@@ -1,0 +1,37 @@
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+      department:
+        one: Departamento
+        other: Departamentos
+      schedule:
+        one: Agendamento
+        other: Agendamentos
+    attributes:
+      user:
+        id: ID
+        name: Nome
+        cpf: CPF
+        rg: RG
+        course: Curso
+        kind: Tipo
+        description: Descrição
+        created_at: Criado em
+        registration: Matrícula
+        address: Endereço
+        phone1: Telefone
+        phone2:	Celular
+      department:
+        id: ID
+        name: Nome
+        description: Descrição
+        created_at: Criado em
+      schedule:
+        id: ID
+        day_hour: Data e hora
+        user: Usuário
+        department: Departamento
+        created_at: Criado em
