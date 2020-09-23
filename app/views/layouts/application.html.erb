@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ScheduleUfmaGrajau</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render partial: "layouts/shared/navigation" %>
+    <div class="container">
+      <div class="col-lg-12">
+        <div class="page-header"><%#= flash_messages %></div>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

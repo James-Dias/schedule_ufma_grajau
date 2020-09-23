@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <%= link_to "Agendamentos UFMA Grajaú", root_path, class: "navbar-brand"%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item <%= 'active' if current_page?(departments_path) %>">
+           <%= link_to departments_path, class: "nav-link" do %>Departamentos
+             <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(departments_path) %>
+           <% end %>
+        </li>
+        <li class="nav-item <%= 'active' if current_page?(schedules_path) %>">
+           <%= link_to schedules_path, class: "nav-link" do %>Agendamentos
+             <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(schedules_path) %>
+           <% end %>
+        </li>
+        <li class="nav-item <%= 'active' if current_page?(users_path) %>">
+           <%= link_to users_path, class: "nav-link" do %>Usuários
+             <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(users_path) %>
+           <% end %>
+        </li>
+        <li><%#= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link" if user_signed_in? %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
