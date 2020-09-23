@@ -21,7 +21,7 @@
              <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(users_path) %>
            <% end %>
         </li>
-        <li><%#= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link" if user_signed_in? %></li>
+        <li><%= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link" if user_signed_in? %></li>
       </ul>
     </div>
   </div>
