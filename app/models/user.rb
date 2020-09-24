@@ -3,4 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  before_validation :unmask_cpf
+  validates :cpf, presence: true
+  validates :cpf, uniqueness: true
+  validates_cpf :cpf
+
+  private
+    # Remove mask from CPF
+    def unmask_cpf
+      unless cpf.blank? then cpf.gsub!(/[.-]/,'') end
+    end
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ScheduleUfmaGrajau</title>
+    <title>Agendamentos UFMA Grajaú</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,4 +17,11 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    jQuery(function($){
+      $("#user_cpf").mask("999.999.999-99");
+      $("#user_phone1").mask("(99) 9999-9999?9");
+      $("#user_phone2").mask("(99) 99999-9999");
+    });
+  </script>
 </html>

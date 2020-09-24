@@ -42,3 +42,8 @@
 <%= link_to t('.new', default: t("helpers.links.new")),
             new_schedule_path,
             class: 'btn btn-primary' %>
+
+<div class="text-center">
+  <%= page_entries_info @schedules %>
+  <%= paginate @schedules %>
+</div>
