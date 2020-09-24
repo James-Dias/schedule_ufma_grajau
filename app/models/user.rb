@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :rememberable, :validatable#, :recoverable
 
   before_validation :unmask_cpf
   validates :cpf, presence: true
@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates_cpf :cpf
 
   has_many :schedules
+
+  enum kind: {student: 0, functionary: 1, administrator: 2}
 
   private
     # Remove mask from CPF

@@ -24,6 +24,9 @@ pt-BR:
         address: Endereço
         phone1: Telefone
         phone2:	Celular
+        student: Aluno
+        functionary: Servidor
+        administrator: Administrador
       department:
         id: ID
         name: Nome

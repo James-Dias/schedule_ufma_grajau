@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  before_action :authorize_schedule
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   # GET /schedules
@@ -59,6 +60,10 @@ class SchedulesController < ApplicationController
       format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def authorize_schedule
+    authorize Schedule
   end
 
   private

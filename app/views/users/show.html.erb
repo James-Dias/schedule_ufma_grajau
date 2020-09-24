@@ -20,7 +20,7 @@
       <dt class="label label-default"><%= model_class.human_attribute_name(:phone2) %></dt>
       <dd><pre class="prettyprint"><%= @user.phone2 %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:kind) %></dt>
-      <dd><pre class="prettyprint"><%= @user.kind %></pre></dd>
+      <dd><pre class="prettyprint"><%= User.human_attribute_name(@user.kind) %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:course) %></dt>
       <dd><pre class="prettyprint"><%= @user.course %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:description) %></dt>

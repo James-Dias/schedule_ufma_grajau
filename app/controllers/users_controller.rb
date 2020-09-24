@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authorize_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :user_not_authorized
 
   # GET /users
   # GET /users.json
   def index
-    @users = UserDecorator.decorate_collection(User.order(:created_at).page params[:page])
+    @users = UserDecorator.decorate_collection(policy_scope(User).order(:created_at).page params[:page])
   end
 
   # GET /users/1
@@ -61,10 +63,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def authorize_user
+    authorize User
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = UserDecorator.decorate(User.find(params[:id]))
+      @user = UserDecorator.decorate(policy_scope(User).find(params[:id]))
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

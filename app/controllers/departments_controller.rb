@@ -1,4 +1,5 @@
 class DepartmentsController < ApplicationController
+  before_action :authorize_department
   before_action :set_department, only: [:show, :edit, :update, :destroy]
 
   # GET /departments
@@ -59,6 +60,10 @@ class DepartmentsController < ApplicationController
       format.html { redirect_to departments_url, notice: 'Department was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def authorize_department
+    authorize Department
   end
 
   private

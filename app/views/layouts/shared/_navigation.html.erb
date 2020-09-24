@@ -21,7 +21,17 @@
              <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(users_path) %>
            <% end %>
         </li>
-        <li><%= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link" if user_signed_in? %></li>
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Perfil
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Atualizar dados", edit_user_path(current_user.id), class: "dropdown-item" %>
+              <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "dropdown-item" if user_signed_in? %>
+            </div>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
