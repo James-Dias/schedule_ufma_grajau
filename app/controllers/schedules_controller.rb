@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.order(:created_at).page params[:page]
+    @schedules = Schedule.order(:day_hour).page params[:page]
   end
 
   # GET /schedules/1
@@ -69,6 +69,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:day_hour, :status, :user_id, :setor_id)
+      params.require(:schedule).permit(:day_hour, :status, :user_id, :department_id, :requester)
     end
 end

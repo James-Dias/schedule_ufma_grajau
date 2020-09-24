@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :cpf, uniqueness: true
   validates_cpf :cpf
 
+  has_many :schedules
+
   private
     # Remove mask from CPF
     def unmask_cpf

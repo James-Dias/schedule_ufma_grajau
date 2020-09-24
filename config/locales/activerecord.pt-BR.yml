@@ -32,6 +32,11 @@ pt-BR:
       schedule:
         id: ID
         day_hour: Data e hora
-        user: Usuário
+        user: Responsável
         department: Departamento
         created_at: Criado em
+        opened: Em aberto
+        requested: Solicitado
+        confirmed: Confirmado
+        inactivated: Inativado
+        requester: Solicitante

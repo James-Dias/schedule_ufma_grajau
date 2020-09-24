@@ -5,24 +5,22 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:day_hour) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:department) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:requester) %></th>
       <th><%=t '.actions', default: t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.id %></td>
-          <td><%= schedule.day_hour %></td>
-          <td><%= schedule.status %></td>
-          <td><%= schedule.user_id %></td>
-          <td><%= schedule.department_id %></td>
-        <td><%=l schedule.created_at, format: :long %></td>
+        <td><%=l schedule.day_hour, format: :datetime %></td>
+        <td><%= Schedule.human_attribute_name(schedule.status) %></td>
+        <td><%= schedule.user.name %></td>
+        <td><%= schedule.department.name %></td>
+        <td><%= User.find(schedule.requester).name if schedule.requester %></td>
         <td>
           <%= link_to schedule_path(schedule), class: 'btn btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>

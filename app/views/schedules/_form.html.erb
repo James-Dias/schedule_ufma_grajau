@@ -1,8 +1,23 @@
 <%= simple_form_for @schedule, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f| %>
-    <%= f.input :day_hour %>
-    <%= f.input :status %>
-    <%= f.input :user_id %>
-    <%= f.input :department_id %>
+    <%= f.input :day_hour, as: :datetime, html5: true %>
+    <% if action_name == 'new' %>
+      <%= f.hidden_field :status, :value => Schedule.statuses.key(0) %>
+    <% else %>
+      <div class="form-group row required">
+        <div class="col-sm-3 control-label required">
+          <%= f.label :status %>
+        </div>
+        <div class="col-sm-9">
+          <%= f.select :status, Schedule.statuses.keys.collect { |key| [Schedule.human_attribute_name(key), key] },
+          {include_blank: true}, {class: "form-control"} %>
+        </div>
+      </div>
+    <% end %>
+    <%= f.association :department %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% if action_name == 'requester' %>
+      <%= f.hidden_field :requester, :value => current_user.id %>
+    <% end %>
   <div class="form-group">
     <div class='col-sm-offset-3 col-sm-9'>
       <%= f.button :submit, class: 'btn-primary' %>
