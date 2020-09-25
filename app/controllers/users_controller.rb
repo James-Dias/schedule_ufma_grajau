@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authorize_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :allow_without_password, only: [:update]
   rescue_from ActiveRecord::RecordNotFound, with: :user_not_authorized
 
   # GET /users
@@ -68,6 +69,13 @@ class UsersController < ApplicationController
   end
 
   private
+    def allow_without_password
+      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+          params[:user].delete(:password)
+          params[:user].delete(:password_confirmation)
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = UserDecorator.decorate(policy_scope(User).find(params[:id]))

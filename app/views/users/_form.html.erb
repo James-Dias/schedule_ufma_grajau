@@ -1,21 +1,73 @@
+<div class="card-body">
 <%= simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f| %>
-    <%= f.input :name %>
-    <%= f.input :cpf, input_html: {class: "cpf"} %>
-    <%= f.input :rg %>
-    <%= f.input :registration %>
-    <%= f.input :address %>
-    <%= f.input :phone1 %>
-    <%= f.input :phone2 %>
-    <div class="form-group row required">
-      <div class="col-sm-3 control-label required">
-        <%= f.label :kind %>
+    <div class="row">
+      <div class="form-group col-lg-7">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
       </div>
-      <div class="col-sm-9">
-        <%= f.select :kind, User.kinds.map { |key, value| [User.human_attribute_name(key), key]}, {include_blank: true}, {class: "form-control"} %>
+      <div class="form-group col-lg-5">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
       </div>
     </div>
-    <%= f.input :course %>
-    <%= f.input :description %>
+    <div class="row">
+      <div class="form-group col-lg-4">
+        <%= f.label :cpf %>
+        <%= f.text_field :cpf, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :registration %>
+        <%= f.text_field :registration, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :course %>
+        <%= f.text_field :course, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-6">
+        <%= f.label :phone1 %>
+        <%= f.text_field :phone1, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group col-lg-6">
+        <%= f.label :phone2 %>
+        <%= f.text_field :phone2, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-4">
+        <div class="control-label required">
+          <%= f.label :kind %>
+        </div>
+        <div>
+          <%= f.select :kind, User.kinds.map { |key, value| [User.human_attribute_name(key), key]}, {include_blank: true}, {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :registration %>
+        <%= f.text_field :registration, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group col-lg-4">
+        <%= f.label :address %>
+        <%= f.text_field :address, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-12">
+        <%= f.label :description %>
+        <%= f.text_field :description, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-6">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="form-group col-lg-6">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </div>
   <div class="form-group">
     <div class='col-sm-offset-3 col-sm-9'>
       <%= f.button :submit, class: 'btn-primary' %>
