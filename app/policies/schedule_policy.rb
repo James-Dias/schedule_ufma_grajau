@@ -1,20 +1,24 @@
 class SchedulePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.administrator?
+        scope.all
+      elsif user.functionary?
+        scope.where(user: user)
+      end
     end
   end
 
   def index?
-    true
+    user.administrator? or user.functionary?
   end
 
   def show?
-    true
+    user.administrator? or user.functionary?
   end
 
   def create?
-    user.administrator?
+    user.administrator? or user.functionary?
   end
 
   def new?
@@ -22,11 +26,11 @@ class SchedulePolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    user.administrator? or user.functionary?
   end
 
   def edit?
-    true
+    user.administrator? or user.functionary?
   end
 
   def destroy?

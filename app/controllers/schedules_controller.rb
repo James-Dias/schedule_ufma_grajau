@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.order(:day_hour).page params[:page]
+    @schedules = policy_scope(Schedule).order(:day_hour).page params[:page]
   end
 
   # GET /schedules/1
@@ -69,7 +69,7 @@ class SchedulesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      @schedule = Schedule.find(params[:id])
+      @schedule = policy_scope(Schedule).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

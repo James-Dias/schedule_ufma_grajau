@@ -6,11 +6,11 @@ class DepartmentPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.administrator?
   end
 
   def show?
-    true
+    user.administrator?
   end
 
   def create?
@@ -22,11 +22,11 @@ class DepartmentPolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    user.administrator?
   end
 
   def edit?
-    true
+    user.administrator?
   end
 
   def destroy?
