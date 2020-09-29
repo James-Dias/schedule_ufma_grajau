@@ -13,6 +13,26 @@ class SchedulePolicy < ApplicationPolicy
     user.administrator? or user.functionary?
   end
 
+  def available_schedules?
+    true
+  end
+
+  def solicitation_schedules?
+    true
+  end
+
+  def my_solicitations?
+    true
+  end
+
+  def confirmation_schedules?
+    user.administrator? or user.functionary?
+  end
+
+  def inativation_schedules?
+    user.administrator? or user.functionary?
+  end
+
   def show?
     user.administrator? or user.functionary?
   end

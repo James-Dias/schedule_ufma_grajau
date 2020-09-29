@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   before_action :authorize_schedule
-  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy, :confirmation_schedules, :inativation_schedules]
+  before_action :set_schedule_solicitation, only: [:solicitation_schedules]
 
   # GET /schedules
   # GET /schedules.json
@@ -8,6 +9,28 @@ class SchedulesController < ApplicationController
     @schedules = policy_scope(Schedule).order(:day_hour).page params[:page]
   end
 
+  def available_schedules
+    @schedules = Schedule.order(:day_hour).where(status: :opened).page params[:page]
+  end
+
+  def solicitation_schedules
+    @schedule.update(requester: current_user.id.to_i, status: :requested)
+    redirect_to my_solicitations_path, notice: "Solicitação registrada!"
+  end
+
+  def my_solicitations
+    @schedules = Schedule.order(:day_hour).where(requester: current_user.id).page params[:page]
+  end
+
+  def confirmation_schedules
+    @schedule.update(status: :confirmed)
+    redirect_to schedules_path, notice: "Confirmação registrada!"
+  end
+
+  def inativation_schedules
+    @schedule.update(status: :inactivated)
+    redirect_to schedules_path, notice: "Inativação registrada!"
+  end
   # GET /schedules/1
   # GET /schedules/1.json
   def show
@@ -70,6 +93,10 @@ class SchedulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
       @schedule = policy_scope(Schedule).find(params[:id])
+    end
+
+    def set_schedule_solicitation
+      @schedule = Schedule.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

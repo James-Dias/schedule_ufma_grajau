@@ -5,34 +5,40 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item <%= 'active' if current_page?(departments_path) %>">
-           <%= link_to departments_path, class: "nav-link" do %>Departamentos
-             <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(departments_path) %>
-           <% end %>
-        </li>
-        <li class="nav-item <%= 'active' if current_page?(schedules_path) %>">
-           <%= link_to schedules_path, class: "nav-link" do %>Agendamentos
-             <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(schedules_path) %>
-           <% end %>
-        </li>
-        <li class="nav-item <%= 'active' if current_page?(users_path) %>">
-           <%= link_to users_path, class: "nav-link" do %>Usuários
-             <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(users_path) %>
-           <% end %>
-        </li>
-        <% if user_signed_in? %>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item <%= 'active' if current_page?(departments_path) %>">
+             <%= link_to departments_path, class: "nav-link" do %>Departamentos
+               <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(departments_path) %>
+             <% end %>
+          </li>
+          <li class="nav-item <%= 'active' if current_page?(schedules_path) %>">
+             <%= link_to schedules_path, class: "nav-link" do %>Agendamentos
+               <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(schedules_path) %>
+             <% end %>
+          </li>
+          <li class="nav-item <%= 'active' if current_page?(available_schedules_path) %>">
+             <%= link_to available_schedules_path, class: "nav-link" do %>Disponibilidade
+               <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(available_schedules_path) %>
+             <% end %>
+          </li>
+          <li class="nav-item <%= 'active' if current_page?(users_path) %>">
+             <%= link_to users_path, class: "nav-link" do %>Usuários
+               <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?(users_path) %>
+             <% end %>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Perfil
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Atualizar dados", edit_user_path(current_user.id), class: "dropdown-item" %>
+              <%= link_to "Minhas solicitações", my_solicitations_path, class: "dropdown-item" %>
               <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "dropdown-item" if user_signed_in? %>
             </div>
           </li>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>

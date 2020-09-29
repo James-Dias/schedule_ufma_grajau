@@ -1,0 +1,31 @@
+<%- model_class = Schedule -%>
+<div class="my-2">
+  <div class="page-header">
+    <h2>Minhas solicitações</h2>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:day_hour) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:user) %></th>
+      <th><%= model_class.human_attribute_name(:department) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%=l schedule.day_hour, format: :datetime %></td>
+        <td><%= Schedule.human_attribute_name(schedule.status) %></td>
+        <td><%= schedule.user.name %></td>
+        <td><%= schedule.department.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= page_entries_info @schedules %>
+  <%= paginate @schedules %>
+</div>
