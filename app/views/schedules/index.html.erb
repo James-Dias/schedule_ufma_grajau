@@ -24,7 +24,7 @@
     <% @schedules.each do |schedule| %>
       <tr>
         <td><%=l schedule.day_hour, format: :datetime %></td>
-        <td><%= Schedule.human_attribute_name(schedule.status) %></td>
+        <td><%= status_schedule schedule.status %></td>
         <td><%= schedule.user.name %></td>
         <td><%= schedule.department.name %></td>
         <td><%= User.find(schedule.requester).name if schedule.requester %></td>
