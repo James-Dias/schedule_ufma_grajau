@@ -4,4 +4,6 @@ class Schedule < ApplicationRecord
 
   enum status: [:opened, :requested, :confirmed, :inactivated]
 
+  validates :day_hour, presence: true
+
 end

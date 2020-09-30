@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :rememberable, :validatable#, :recoverable
 
   before_validation :unmask_cpf
-  validates :cpf, presence: true
+  validates :cpf, :name, :phone2, presence: true
   validates :cpf, uniqueness: true
   validates_cpf :cpf
 
