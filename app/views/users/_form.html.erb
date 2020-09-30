@@ -35,22 +35,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-lg-4">
-        <div class="control-label required">
-          <%= f.label :kind %>
-        </div>
-        <div>
-          <%= f.select :kind, User.kinds.map { |key, value| [User.human_attribute_name(key), key]}, {include_blank: true}, {class: "form-control"} %>
-        </div>
-      </div>
-      <div class="form-group col-lg-4">
+      <div class="form-group col-lg-6">
         <%= f.label :registration %>
         <%= f.text_field :registration, autofocus: true, class: 'form-control' %>
       </div>
-      <div class="form-group col-lg-4">
+      <div class="form-group col-lg-6">
         <%= f.label :address %>
         <%= f.text_field :address, autofocus: true, class: 'form-control' %>
       </div>
+    </div>
+    <div class="row">
+      <% if policy(User).index? %>
+        <div class="form-group col-lg-12">
+          <div class="control-label required">
+            <%= f.label :kind %>
+          </div>
+          <div>
+            <%= f.select :kind, User.kinds.map { |key, value| [User.human_attribute_name(key), key]}, {include_blank: true}, {class: "form-control"} %>
+          </div>
+        </div>
+      <% end %>
     </div>
     <div class="row">
       <div class="form-group col-lg-12">
