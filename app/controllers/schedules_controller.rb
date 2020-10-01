@@ -6,7 +6,16 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = policy_scope(Schedule).order(:day_hour).page params[:page]
+    @filterrific = initialize_filterrific(
+      policy_scope(Schedule),
+      params[:filterrific],
+      select_options: {
+                sorted_by: Schedule.options_for_sorted_by,
+              },
+      :persistence_id => false,
+    ) or return
+
+    @schedules = @filterrific.find.page(params[:page]).order(:day_hour)
   end
 
   def available_schedules

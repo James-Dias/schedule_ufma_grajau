@@ -13,7 +13,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="exampleInputName2">Data</label>
-        <%= f.date_field :day_hour, :class => 'form-control'%>
+        <%= f.date_field :day_hour_query, :class => 'form-control'%>
        </div>
     </div>
     <div class="col-md-4">
@@ -37,7 +37,7 @@
       <%= f.submit 'Buscar' , class: "btn btn-primary"%>
     </div>
     <div class="col-md-6">
-      <%= link_to 'Resetar filtros', available_schedules_path, class: "btn btn-link pull-right" %>
+      <%= link_to 'Resetar filtros', available_schedules_path, class: "btn btn-link float-right" %>
     </div>
   </div>
   <% end %>

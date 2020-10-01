@@ -9,6 +9,68 @@
     <%= link_to t('.new', default: t("helpers.links.new")), new_schedule_path, class: 'btn btn-primary float-right' %>
   </div>
 </div>
+<hr / class="hidden-print">
+
+<div class="well hidden-print">
+  <h4>Busca Avançada</h4>
+  <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit', class: "" } do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Data</label>
+        <%= f.date_field :day_hour_query, :class => 'form-control'%>
+       </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Departamentos</label>
+          <%= f.collection_select :department_query, Department.order(:id), :name, :name, {prompt: ''}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Ordenar</label>
+          <%= f.select(:sorted_by,
+                         @filterrific.select_options[:sorted_by],
+                         { include_blank: true },
+                         class: "form-control" ) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Status</label>
+        <%= f.select :status_query, Schedule.statuses.keys.collect { |key| [Schedule.human_attribute_name(key), key] },
+        {include_blank: true}, {class: "form-control"} %>
+       </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Responsável</label>
+        <%= f.collection_select :user_query, User.order(:id).where.not(kind: :student), :id, :name, {include_blank: true},
+         {class: "form-control"} %>
+       </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Solicitante</label>
+        <%= f.collection_select :requester_query, User.order(:id), :id, :name, {include_blank: true},
+         {class: "form-control"} %>
+       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.submit 'Buscar' , class: "btn btn-primary"%>
+    </div>
+    <div class="col-md-6">
+      <%= link_to 'Resetar filtros', schedules_path, class: "btn btn-link float-right" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br />
 <table class="table table-striped">
   <thead>
     <tr>
