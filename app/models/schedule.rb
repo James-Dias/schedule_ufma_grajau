@@ -30,13 +30,12 @@ class Schedule < ApplicationRecord
 	  case sort_option.to_s
     when /^day_hour/
       order("day_hour #{ direction }")
-    when /^departments/
-      order("departments.name #{ direction }")
+    when /^departments_name/
+      order("departments.name #{ direction }").includes(:department).references(:department)
 	  else
 	    raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
   }
-#where public.demands.date >= '2018-01-09' AND demands.date <= '2018-01-09'
 
 	filterrific(
 
@@ -54,7 +53,7 @@ class Schedule < ApplicationRecord
     [
       ['Data (Crescente)', 'day_hour_asc'],
       ['Data (Decrescente)', 'day_hour_desc'],
-      ['Departamentos (Crescente)', 'name_asc'],
+      ['Departamentos (Crescente)', 'departments_name_asc'],
     ]
   end
 
