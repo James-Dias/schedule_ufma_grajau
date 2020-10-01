@@ -10,7 +10,16 @@ class SchedulesController < ApplicationController
   end
 
   def available_schedules
-    @schedules = Schedule.order(:day_hour).where(status: :opened).page params[:page]
+    @filterrific = initialize_filterrific(
+      Schedule,
+      params[:filterrific],
+      select_options: {
+                sorted_by: Schedule.options_for_sorted_by,
+              },
+      :persistence_id => false,
+    ) or return
+
+    @schedules = @filterrific.find.page(params[:page]).order(:day_hour).where(status: :opened)
   end
 
   def solicitation_schedules

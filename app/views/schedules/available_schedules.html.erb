@@ -4,6 +4,45 @@
     <h2>Disponibilidade</h2>
   </div>
 </div>
+<hr / class="hidden-print">
+
+<div class="well hidden-print">
+  <h4>Busca Avançada</h4>
+  <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit', class: "" } do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Data</label>
+        <%= f.date_field :day_hour, :class => 'form-control'%>
+       </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Departamentos</label>
+          <%= f.collection_select :department_query, Department.order(:id), :name, :name, {prompt: ''}, {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputName2">Ordenar</label>
+          <%= f.select(:sorted_by,
+                         @filterrific.select_options[:sorted_by],
+                         { include_blank: true },
+                         class: "form-control" ) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.submit 'Buscar' , class: "btn btn-primary"%>
+    </div>
+    <div class="col-md-6">
+      <%= link_to 'Resetar filtros', available_schedules_path, class: "btn btn-link pull-right" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br />
 <table class="table table-striped">
   <thead>
     <tr>
