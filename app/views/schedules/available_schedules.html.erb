@@ -13,7 +13,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="exampleInputName2">Data</label>
-        <%= f.date_field :day_hour_query, :class => 'form-control'%>
+        <%= f.date_field :day_query, :class => 'form-control'%>
        </div>
     </div>
     <div class="col-md-4">
@@ -46,7 +46,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:day_hour) %></th>
+      <th><%= model_class.human_attribute_name(:day) %></th>
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:department) %></th>
       <th><%= model_class.human_attribute_name(:spaces) %></th>
@@ -56,7 +56,7 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%=l schedule.day_hour, format: :datetime %></td>
+        <td><%=l schedule.day %></td>
         <td><%= schedule.user.name %></td>
         <td><%= schedule.department.name %></td>
         <td><%= schedule.spaces.to_i-schedule.occupation.to_i %></td>

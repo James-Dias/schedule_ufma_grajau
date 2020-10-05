@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201005015419) do
+ActiveRecord::Schema.define(version: 20201005185902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20201005015419) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.datetime "day_hour"
     t.integer "status"
     t.bigint "user_id"
     t.bigint "department_id"
@@ -31,6 +30,9 @@ ActiveRecord::Schema.define(version: 20201005015419) do
     t.datetime "updated_at", null: false
     t.integer "spaces"
     t.integer "occupation", default: 0
+    t.date "day"
+    t.time "hour_begin"
+    t.time "hour_end"
     t.index ["department_id"], name: "index_schedules_on_department_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end

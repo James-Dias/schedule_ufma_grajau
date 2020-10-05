@@ -65,6 +65,9 @@ gem 'validates_cpf_cnpj'
 gem "cpf_cnpj"
 # Filterrific is a Rails Engine plugin that makes it easy to filter, search, and sort your ActiveRecord lists.
 gem 'filterrific'
+# jQuery UI for the Rails asset pipeline
+gem 'jquery-ui-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

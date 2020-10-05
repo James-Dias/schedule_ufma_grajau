@@ -7,7 +7,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:day_hour) %></th>
+      <th><%= model_class.human_attribute_name(:day) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:department) %></th>
@@ -16,7 +16,7 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%=l schedule.day_hour, format: :datetime %></td>
+        <td><%=l schedule.day%></td>
         <td><%= status_schedule schedule.status %></td>
         <td><%= schedule.user.name %></td>
         <td><%= schedule.department.name %></td>

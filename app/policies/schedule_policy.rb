@@ -13,6 +13,10 @@ class SchedulePolicy < ApplicationPolicy
     user.administrator? or user.functionary?
   end
 
+  def multiple_schedules?
+    user.administrator? or user.functionary?
+  end
+
   def available_schedules?
     true
   end

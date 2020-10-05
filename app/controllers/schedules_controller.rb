@@ -16,7 +16,17 @@ class SchedulesController < ApplicationController
       :persistence_id => false,
     ) or return
 
-    @schedules = @filterrific.find.page(params[:page]).order(:day_hour)
+    @schedules = @filterrific.find.page(params[:page]).order(:day)
+  end
+
+  def multiple_schedules
+    days = params[:schedule][:day]
+    days_array = days.split(",")
+    days_array.length
+    for day in days_array do
+      Schedule.create(day: day.to_s, spaces: params[:schedule][:spaces], status: params[:schedule][:status], user_id:params[:schedule][:user_id], department_id: params[:schedule][:department_id])
+    end
+    redirect_to schedules_path, notice: "Agendamento realizado com sucesso!"
   end
 
   def available_schedules
@@ -29,7 +39,7 @@ class SchedulesController < ApplicationController
       :persistence_id => false,
     ) or return
 
-    @schedules = @filterrific.find.page(params[:page]).order(:day_hour).where(status: :opened)
+    @schedules = @filterrific.find.page(params[:page]).order(:day).where(status: :opened)
   end
 
   def solicitation_schedules
@@ -45,7 +55,7 @@ class SchedulesController < ApplicationController
   end
 
   def my_solicitations
-    @schedules = Schedule.order(:day_hour).joins(:solicitations)
+    @schedules = Schedule.order(:day).joins(:solicitations)
     .where(solicitations:{user_id: current_user.id}).page params[:page]
   end
 
@@ -70,7 +80,6 @@ class SchedulesController < ApplicationController
   # POST /schedules
   # POST /schedules.json
   def create
-    p schedule_params
     @schedule = Schedule.new(schedule_params)
 
     respond_to do |format|
@@ -129,6 +138,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:day_hour, :status, :user_id, :department_id, :spaces, :occupation)
+      params.require(:schedule).permit(:day, :hour_begin, :hour_end, :status, :user_id, :department_id, :spaces, :occupation)
     end
 end

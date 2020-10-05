@@ -4,12 +4,12 @@ class Schedule < ApplicationRecord
   has_many :solicitations
 
   enum status: [:opened, :crowded, :canceled]
-
-  validates :day_hour, :spaces, presence: true
+  #hour_begin, :hour_end
+  validates :day, :spaces, presence: true
   validates :spaces, :numericality => { :greater_than_or_equal_to => 0 }
 
-  scope :day_hour_query, lambda { |query|
-    where("schedules.day_hour >= ? AND schedules.day_hour <= ?", "#{query} 00:00", "#{query} 23:59")
+  scope :day_query, lambda { |query|
+    where("schedules.day >= ? AND schedules.day <= ?", "#{query}", "#{query}")
   }
   scope :department_query, lambda { |query|
     joins(:department).where("departments.name ILIKE ?", "#{query}")
@@ -30,8 +30,8 @@ class Schedule < ApplicationRecord
 	scope :sorted_by, lambda { |sort_option|
 	  direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
 	  case sort_option.to_s
-    when /^day_hour/
-      order("day_hour #{ direction }")
+    when /^day/
+      order("day #{ direction }")
     when /^departments_name/
       order("departments.name #{ direction }").includes(:department).references(:department)
 	  else
@@ -43,7 +43,7 @@ class Schedule < ApplicationRecord
 
 	  available_filters: [
 	  	:sorted_by,
-      :day_hour_query,
+      :day_query,
       :department_query,
       :status_query,
       :user_query,
@@ -53,8 +53,8 @@ class Schedule < ApplicationRecord
 
   def self.options_for_sorted_by
     [
-      ['Data (Crescente)', 'day_hour_asc'],
-      ['Data (Decrescente)', 'day_hour_desc'],
+      ['Data (Crescente)', 'day_asc'],
+      ['Data (Decrescente)', 'day_desc'],
       ['Departamentos (Crescente)', 'departments_name_asc'],
     ]
   end
