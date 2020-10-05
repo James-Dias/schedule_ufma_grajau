@@ -1,10 +1,12 @@
 class Schedule < ApplicationRecord
   belongs_to :user
   belongs_to :department
+  has_many :solicitations
 
-  enum status: [:opened, :requested, :confirmed, :inactivated]
+  enum status: [:opened, :crowded, :canceled]
 
-  validates :day_hour, presence: true
+  validates :day_hour, :spaces, presence: true
+  validates :spaces, :numericality => { :greater_than_or_equal_to => 0 }
 
   scope :day_hour_query, lambda { |query|
     where("schedules.day_hour >= ? AND schedules.day_hour <= ?", "#{query} 00:00", "#{query} 23:59")

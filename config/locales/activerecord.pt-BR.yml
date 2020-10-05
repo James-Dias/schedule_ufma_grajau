@@ -39,7 +39,7 @@ pt-BR:
         department: Departamento
         created_at: Criado em
         opened: Em aberto
-        requested: Solicitado
-        confirmed: Confirmado
-        inactivated: Inativado
+        crowded: Lotado
+        canceled: Cancelado
         requester: Solicitante
+        spaces: Vagas

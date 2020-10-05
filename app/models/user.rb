@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates_cpf :cpf
 
   has_many :schedules
+  has_many :solicitations
 
   enum kind: {student: 0, functionary: 1, administrator: 2}
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200924024715) do
+ActiveRecord::Schema.define(version: 20201005015419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,20 @@ ActiveRecord::Schema.define(version: 20200924024715) do
     t.bigint "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "requester"
+    t.integer "spaces"
+    t.integer "occupation", default: 0
     t.index ["department_id"], name: "index_schedules_on_department_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "solicitations", force: :cascade do |t|
+    t.bigint "schedule_id"
+    t.bigint "user_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_id"], name: "index_solicitations_on_schedule_id"
+    t.index ["user_id"], name: "index_solicitations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,4 +70,6 @@ ActiveRecord::Schema.define(version: 20200924024715) do
 
   add_foreign_key "schedules", "departments"
   add_foreign_key "schedules", "users"
+  add_foreign_key "solicitations", "schedules"
+  add_foreign_key "solicitations", "users"
 end

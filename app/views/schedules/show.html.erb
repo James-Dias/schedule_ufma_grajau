@@ -15,8 +15,8 @@
       <dd><pre class="prettyprint"><%= @schedule.user.name %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:department) %></dt>
       <dd><pre class="prettyprint"><%= @schedule.department.name %></pre></dd>
-      <dt class="label label-default"><%= model_class.human_attribute_name(:requester) %></dt>
-      <dd><pre class="prettyprint"><%= User.find(@schedule.requester).name if @schedule.requester %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:spaces) %></dt>
+      <dd><pre class="prettyprint"><%= @schedule.spaces %></pre></dd>
   </dl>
 </div>
 
