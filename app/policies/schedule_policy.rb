@@ -25,10 +25,6 @@ class SchedulePolicy < ApplicationPolicy
     true
   end
 
-  def confirmation_schedules?
-    user.administrator? or user.functionary?
-  end
-
   def inativation_schedules?
     user.administrator? or user.functionary?
   end
