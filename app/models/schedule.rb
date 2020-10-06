@@ -4,8 +4,8 @@ class Schedule < ApplicationRecord
   has_many :solicitations
 
   enum status: [:opened, :crowded, :canceled]
-  #hour_begin, :hour_end
-  validates :day, :spaces, presence: true
+
+  validates :day, :hour_begin, :hour_end, :spaces, presence: true
   validates :spaces, :numericality => { :greater_than_or_equal_to => 0 }
 
   scope :day_query, lambda { |query|

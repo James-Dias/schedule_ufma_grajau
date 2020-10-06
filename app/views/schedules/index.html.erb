@@ -75,6 +75,8 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:day) %></th>
+      <th><%= model_class.human_attribute_name(:hour_begin) %></th>
+      <th><%= model_class.human_attribute_name(:hour_end) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:department) %></th>
@@ -87,6 +89,8 @@
     <% @schedules.each do |schedule| %>
       <tr>
         <td><%=l schedule.day %></td>
+        <td><%=l schedule.hour_begin, format: :time %></td>
+        <td><%=l schedule.hour_end, format: :time %></td>
         <td><%= status_schedule schedule.status %></td>
         <td><%= schedule.user.name %></td>
         <td><%= schedule.department.name %></td>

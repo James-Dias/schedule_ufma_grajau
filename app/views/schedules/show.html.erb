@@ -8,7 +8,11 @@
 <div class="fieldset">
   <dl>
       <dt class="label label-default"><%= model_class.human_attribute_name(:day) %></dt>
-      <dd><pre class="prettyprint"><%=l @schedule.day%></pre></dd>
+      <dd><pre class="prettyprint"><%=l @schedule.day %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:hour_begin) %></dt>
+      <dd><pre class="prettyprint"><%=@schedule.hour_begin %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:hour_end) %></dt>
+      <dd><pre class="prettyprint"><%=@schedule.hour_end %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:status) %></dt>
       <dd><pre class="prettyprint"><%= Schedule.human_attribute_name(@schedule.status) %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:user) %></dt>

@@ -24,7 +24,9 @@ class SchedulesController < ApplicationController
     days_array = days.split(",")
     days_array.length
     for day in days_array do
-      Schedule.create(day: day.to_s, spaces: params[:schedule][:spaces], status: params[:schedule][:status], user_id:params[:schedule][:user_id], department_id: params[:schedule][:department_id])
+      Schedule.create(day: day.to_s, spaces: params[:schedule][:spaces],
+         status: params[:schedule][:status], user_id:params[:schedule][:user_id],
+          department_id: params[:schedule][:department_id], hour_begin: params[:schedule][:hour_begin], hour_end: params[:schedule][:hour_end])
     end
     redirect_to schedules_path, notice: "Agendamento realizado com sucesso!"
   end

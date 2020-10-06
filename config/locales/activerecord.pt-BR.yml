@@ -34,7 +34,9 @@ pt-BR:
         created_at: Criado em
       schedule:
         id: ID
-        day_hour: Data e hora
+        day: Dia
+        hour_begin: Hora inicial
+        hour_end: Hora final
         user: Responsável
         department: Departamento
         created_at: Criado em

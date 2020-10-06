@@ -4,10 +4,17 @@
         <%= f.label :day %>
       </div>
       <div class="col-sm-9">
-        <%= f.text_field :day, id: "mdp-demo", autocomplete:"off" %>
+        <%= f.text_field :day, id: "mdp-demo", autocomplete:"off", class: "form-control" %>
       </div>
-    </div>    
-    <%= f.input :spaces %>
+    </div>
+    <div class="form-group row required">
+      <div class="col-sm-6 required">
+        <%= f.input :hour_begin, as: :time, html5: true %>
+      </div>
+      <div class="col-sm-6 required">
+        <%= f.input :hour_end, as: :time, html5: true %>
+      </div>
+    </div>
     <% if action_name == 'new' %>
       <%= f.hidden_field :status, :value => Schedule.statuses.key(0) %>
     <% else %>
@@ -21,7 +28,14 @@
         </div>
       </div>
     <% end %>
-    <%= f.association :department %>
+    <div class="form-group row required">
+      <div class="col-sm-4 required">
+        <%= f.input :spaces %>
+      </div>
+      <div class="col-sm-8 required">
+        <%= f.association :department %>
+      </div>
+    </div>
     <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="form-group">
     <div class='col-sm-offset-3 col-sm-9'>
