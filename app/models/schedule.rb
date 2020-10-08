@@ -24,7 +24,7 @@ class Schedule < ApplicationRecord
   }
 
   scope :requester_query, lambda { |query|
-    where(requester: query)
+    joins(:solicitations).where(solicitations: {user_id: query})
   }
 
 	scope :sorted_by, lambda { |sort_option|
