@@ -46,8 +46,8 @@ class SchedulesController < ApplicationController
 
   def solicitation_schedules
     if @schedule.occupation < @schedule.spaces
-      if Solicitation.where(schedule: @schedule, user_id:current_user.id).blank?
-        Solicitation.create(schedule: @schedule, user_id:current_user.id)
+      if Solicitation.day_already_requested(@schedule, current_user.id).blank?
+        Solicitation.create_solicitation(@schedule, current_user.id)
         @schedule.update(occupation: @schedule.occupation+1)
         redirect_to my_solicitations_path, notice: "Solicitação registrada!"
       else
